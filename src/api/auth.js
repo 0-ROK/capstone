@@ -1,4 +1,4 @@
-import { post } from ".";
+import { get, post } from ".";
 
 export const useAuthActions = () => {
   return { login, register };
@@ -11,7 +11,7 @@ export const useAuthActions = () => {
     localStorage.setItem("studyCapstone", res.data.accessToken);
 
     if (res.status === 201) {
-      localStorage.setItem("studyCapstoneId", req.username);
+      localStorage.setItem("userID", req.username);
     }
 
     return res;
@@ -22,5 +22,7 @@ export const useAuthActions = () => {
    */
   async function register(req) {
     const res = await post(`auth/signup`, req);
+
+    return res;
   }
 };
