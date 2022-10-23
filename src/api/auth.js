@@ -1,9 +1,9 @@
-import { get, post } from ".";
+import { post } from ".";
 import { atom, useRecoilState } from "recoil";
 
 export const authTokenState = atom({
   key: "authToken",
-  default: { username: "", authToken: "" },
+  default: { username: "" },
 });
 
 export const useAuthActions = () => {
@@ -16,13 +16,11 @@ export const useAuthActions = () => {
    */
   async function login(req) {
     const res = await post(`auth/signin`, req);
-    if (res.status === 200) {
+    if (res.status === 201) {
       localStorage.setItem("studyCapstone", res.data.accessToken);
-      localStorage.setItem("studyCapstoneId", res.data.username);
       setAuthToken({
         ...authToken,
         username: localStorage.getItem("studyCapstone"),
-        authToken: localStorage.getItem("studyCapstone"),
       });
     }
 

@@ -9,14 +9,18 @@ const StudyCardView = ({ study }) => {
           variant="top"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1ffYg4ePSTDEEc_dNcQfaZvnEg6pFS2WCEQ&usqp=CAU"
         />
-        <CardHeader title={study.title} description={study.description} />
-        <CardContent hashtag={study.hashtag} date={study.date} id={study.id} />
+        <CardHeader title={study?.title} description={study?.description} />
+        <CardContent
+          hashtag={study?.hashtag}
+          date={study?.date}
+          id={study?.id}
+        />
       </Card>
     </>
   );
 };
 
-const CardHeader = ({ title, description }) => {
+const CardHeader = ({ title = "제목 없음", description }) => {
   return (
     <>
       <Card.Body>
@@ -36,7 +40,7 @@ const CardContent = ({ hashtag, date, id }) => {
         <ListGroup.Item>개설일자: {date}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Card.Link onClick={() => navigate(`/study_detail:${id}`)}>
+        <Card.Link onClick={() => navigate(`/study_detail/${id}`)}>
           상세보기
         </Card.Link>
       </Card.Body>
